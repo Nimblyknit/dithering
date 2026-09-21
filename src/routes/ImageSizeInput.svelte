@@ -1,11 +1,13 @@
 <script>
 	import { ID } from '$lib/math/id-generation.js';
-	import { Icon, LockClosed } from 'svelte-hero-icons';
+	import { Icon, LockClosed, LockOpen } from 'svelte-hero-icons';
 
-	/** @type {number}	 */
-	export let width;
-	/** @type {number}	 */
-	export let aspectRatio;
+	/** @type {number} */
+    export let width;
+    /** @type {number} */
+    export let height;
+    /** @type {number} */
+    export let aspectRatio;
 
 	/** @type {number | null}	 */
 	export let maxWidth = null;
@@ -20,16 +22,23 @@
 	/** @type {boolean}	 */
 	export let disabled = false;
 
+    let aspectRatioLocked = true;
+
 	/** @param {any} e */
 	function onWidthInput(e) {
 		const newWidth = e.target.value;
 		if (!newWidth) return;
 		if (minWidth !== null && newWidth < minWidth) return;
 		if (maxWidth !== null && newWidth > maxWidth) return;
-		width = newWidth;
-	}
 
-	$: height = Math.round(width / aspectRatio);
+	    width = newWidth;
+
+	    if (aspectRatioLocked) {
+		height = Math.round(newWidth / aspectRatio);
+	}
+}
+
+// $: height = Math.round(width / aspectRatio);
 
 	/** @param {any} e */
 	function onHeightInput(e) {
@@ -37,8 +46,13 @@
 		if (!height) return;
 		if (minHeight !== null && height < minHeight) return;
 		if (maxHeight !== null && height > maxHeight) return;
-		width = Math.round(aspectRatio * height);
+	
+        height = newHeight;
+
+	    if (aspectRatioLocked) {
+		width = Math.round(aspectRatio * newHeight);
 	}
+}
 
 	let withId = ID();
 	let heightId = ID();
