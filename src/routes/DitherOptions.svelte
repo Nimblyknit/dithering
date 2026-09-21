@@ -26,12 +26,12 @@
 		return imgData.width / imgData.height;
 	}
 
-	$: config.height = Math.round(config.width / aspectRatio);
-
 	let useOriginalSize = true;
-	let resizedWidth = image_data.width;
+    let resizedWidth = image_data.width;
+    let resizedHeight = image_data.height;
 
 	$: config.width = useOriginalSize ? image_data.width : resizedWidth;
+    $: config.height = useOriginalSize ? image_data.height : resizedHeight;
 </script>
 
 <div class="grid gap-4">
@@ -41,7 +41,8 @@
 
 	<DimensionsInput
 		bind:width={resizedWidth}
-		{aspectRatio}
+	    bind:height={resizedHeight}
+	    {aspectRatio}
 		minWidth={12}
 		minHeight={12}
 		maxHeight={5000}
