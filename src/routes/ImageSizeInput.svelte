@@ -88,10 +88,20 @@
 		</div>
 	</div>
 
-	<span class=" cursor-not-allowed pb-2 {disabled ? 'text-gray-300' : 'text-gray-500'}">
-		<Icon src={LockClosed} class="h-4 w-4" solid />
-	</span>
-	<div class="w-full">
+<button
+	type="button"
+	class="pb-2 {disabled ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-700 cursor-pointer'}"
+	disabled={disabled}
+	on:click={() => (aspectRatioLocked = !aspectRatioLocked)}
+	aria-label={aspectRatioLocked ? 'Unlock aspect ratio' : 'Lock aspect ratio'}
+>
+	<Icon
+		src={aspectRatioLocked ? LockClosed : LockOpen}
+		class="h-4 w-4"
+		solid
+	/>
+</button>
+<div class="w-full">
 		<label
 			for="height-{heightId}"
 			class="block text-sm font-medium leading-6 {disabled ? 'text-gray-400' : 'text-gray-900'}"
