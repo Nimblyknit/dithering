@@ -11,16 +11,18 @@ pub fn export_png(width: u32, height: u32, pixels: &[u8]) -> Result<Vec<u8>, Str
 
     {
         let cursor = Cursor::new(&mut buffer);
-        let (indexed_pixels, palette) = rgba_to_indexed(pixels)?;
 
         let mut encoder = Encoder::new(cursor, width, height);
-        encoder.set_color(ColorType::Indexed);
+        encoder.set_color(ColorType::Rgba);
         encoder.set_depth(BitDepth::Eight);
-        encoder.set_palette(palette.clone());
 
-        let mut writer = encoder.write_header().unwrap();
+        let mut writer = encoder
+            .write_header()
+            .map_err(|e| e.to_string())?;
 
-        writer.write_image_data(&indexed_pixels).unwrap();
+        writer
+            .write_image_data(pixels)
+            .map_err(|e| e.to_string())?;
     }
 
     Ok(buffer)
