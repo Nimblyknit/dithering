@@ -41,15 +41,15 @@
 // $: height = Math.round(width / aspectRatio);
 
 	/** @param {any} e */
-	function onHeightInput(e) {
-		const height = e.target.value;
-		if (!height) return;
-		if (minHeight !== null && height < minHeight) return;
-		if (maxHeight !== null && height > maxHeight) return;
-	
-        height = newHeight;
+    function onHeightInput(e) {
+	const newHeight = e.target.value;
+	if (!newHeight) return;
+	if (minHeight !== null && newHeight < minHeight) return;
+	if (maxHeight !== null && newHeight > maxHeight) return;
 
-	    if (aspectRatioLocked) {
+	height = newHeight;
+
+	if (aspectRatioLocked) {
 		width = Math.round(aspectRatio * newHeight);
 	}
 }
