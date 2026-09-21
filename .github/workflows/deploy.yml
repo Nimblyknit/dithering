@@ -40,8 +40,8 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: knit-pages
           folder: build
+          branch: knit-pages
           clean: true
           clean-exclude: |
             CNAME
