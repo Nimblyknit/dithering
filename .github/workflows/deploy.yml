@@ -22,10 +22,10 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
-      - name: Use Node.js 21
+      - name: Use Node.js 24
         uses: actions/setup-node@v3
         with:
-          node-version: 21
+          node-version: 24
           cache: 'pnpm'
 
       - name: Install Dependencies
@@ -40,7 +40,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: knit-page
+          branch: knit-pages
           folder: build
           clean: true
           clean-exclude: |
