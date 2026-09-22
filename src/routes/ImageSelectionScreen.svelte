@@ -3,11 +3,12 @@
 	import cat_img_src from './images/cat.jpg';
 	import david_img_src from './images/david.png';
 	import radial_gradient_img_src from './images/radial.png';
+    import knitted_img_src from './images/knitted-dithering.png;
 	import { loadImageFile } from './utils';
 	import { Icon, Plus } from 'svelte-hero-icons';
 	import logo_src from '$lib/assets/dither-studio-logo.png';
 
-	const imagePresets = [radial_gradient_img_src, david_img_src, cat_img_src];
+	const imagePresets = [radial_gradient_img_src, david_img_src, cat_img_src, knitted_img_src];
 
 	/**
 	 * @type {import("svelte").EventDispatcher<{image: HTMLImageElement}>}
